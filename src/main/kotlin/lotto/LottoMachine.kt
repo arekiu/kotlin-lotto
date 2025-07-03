@@ -1,0 +1,94 @@
+package lotto
+
+class LottoMachine() {
+    private fun calculateTickets(userAmount: Int): Int {
+        val numberOfTickets = userAmount / LOTTO_PRICE
+        return numberOfTickets
+    }
+
+    private fun generateNumbers(): List<Int> {
+        val randomNumbers = (MIN_VAL..MAX_VAL).shuffled().take(6).sorted()
+        return randomNumbers
+    }
+
+    fun createTickets(userAmount: Int): List<Lotto> {
+        val lottos = mutableListOf<Lotto>()
+        val amountOfTickets = calculateTickets(userAmount)
+        var count = 0
+        while (count < amountOfTickets) {
+            val lotto = Lotto(generateNumbers())
+            lottos.add(lotto)
+            count++
+        }
+        return lottos
+    }
+
+    private fun compareTicketToWinningNumbers(
+        lotto: Lotto,
+        winningNumbers: List<String>,
+    ): Int {
+        var countMatches = 0
+        winningNumbers.forEach { number ->
+            if (number.toInt() in lotto.getNumbers()) {
+                countMatches++
+            }
+        }
+        return countMatches
+    }
+
+    private fun compareTicketToBonusNumber(
+        lotto: Lotto,
+        bonusNumber: Int,
+    ): Boolean {
+        return bonusNumber in lotto.getNumbers()
+    }
+
+    private fun createMap(): MutableMap<Rank, Int> {
+        val prizeCounter = mutableMapOf<Rank, Int>()
+        for (rank in Rank.values()) {
+            prizeCounter[rank] = 0
+        }
+        return prizeCounter
+    }
+
+    fun compareTickets(
+        lottos: List<Lotto>,
+        winningNumber: List<String>,
+        bonusNumber: Int,
+    ): MutableMap<Rank, Int> {
+        val prizeCounter = createMap()
+
+        lottos.forEach { ticket ->
+            var hasBonus = false
+            val matches = compareTicketToWinningNumbers(ticket, winningNumber)
+            if (matches == 5) {
+                hasBonus = compareTicketToBonusNumber(ticket, bonusNumber)
+            }
+            val chosen = Rank.valueOf(matches, hasBonus)
+            prizeCounter[chosen] = prizeCounter.getValue(chosen) + 1
+        }
+        return prizeCounter
+    }
+
+    private fun calculateTotalPrize(results: MutableMap<Rank, Int>): Int {
+        var totalPrize = 0
+        results.forEach { (key, value) ->
+            totalPrize += key.winningMoney * value
+        }
+        return totalPrize
+    }
+
+    fun calculateReturnRate(
+        results: MutableMap<Rank, Int>,
+        userAmount: Int,
+    ): Double {
+        val totalPrize = calculateTotalPrize(results)
+        return (totalPrize.toDouble() / userAmount.toDouble())
+    }
+
+    companion object {
+        const val LOTTO_PRICE = 1000
+        const val MIN_VAL = 1
+        const val MAX_VAL = 45
+    }
+}
