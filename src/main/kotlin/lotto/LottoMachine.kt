@@ -7,15 +7,8 @@ class LottoMachine() {
     private fun generateNumbers() = (MIN_VAL..MAX_VAL).shuffled().take(6).sorted()
 
     fun createTickets(userAmount: Int): List<Lotto> {
-        val lottos = mutableListOf<Lotto>()
         val amountOfTickets = calculateTickets(userAmount)
-        var count = 0
-        while (count < amountOfTickets) {
-            val lotto = Lotto(generateNumbers())
-            lottos.add(lotto)
-            count++
-        }
-        return lottos
+        return List(amountOfTickets) { Lotto(generateNumbers()) }
     }
 
     private fun compareTicketToWinningNumbers(
