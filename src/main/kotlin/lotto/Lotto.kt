@@ -12,12 +12,7 @@ class Lotto(val lottoNumbers: List<Int>) {
     }
 
     private fun isInRange(lottoNumbers: List<Int>): Boolean {
-        lottoNumbers.forEach { number ->
-            if (number !in 1..45) {
-                return false
-            }
-        }
-        return true
+        return lottoNumbers.all { it in 1..45 }
     }
 
     private fun isDuplicated(lottoNumbers: List<Int>): Boolean {
