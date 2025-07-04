@@ -1,10 +1,8 @@
 package lotto
 
 class LottoMachine() {
-    private fun calculateTickets(userAmount: Int): Int {
-        val numberOfTickets = userAmount / LOTTO_PRICE
-        return numberOfTickets
-    }
+
+    private fun calculateTickets(userAmount: Int) = userAmount / LOTTO_PRICE
 
     private fun generateNumbers(): List<Int> {
         val randomNumbers = (MIN_VAL..MAX_VAL).shuffled().take(6).sorted()
