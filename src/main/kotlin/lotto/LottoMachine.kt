@@ -4,10 +4,7 @@ class LottoMachine() {
 
     private fun calculateTickets(userAmount: Int) = userAmount / LOTTO_PRICE
 
-    private fun generateNumbers(): List<Int> {
-        val randomNumbers = (MIN_VAL..MAX_VAL).shuffled().take(6).sorted()
-        return randomNumbers
-    }
+    private fun generateNumbers() = (MIN_VAL..MAX_VAL).shuffled().take(6).sorted()
 
     fun createTickets(userAmount: Int): List<Lotto> {
         val lottos = mutableListOf<Lotto>()
