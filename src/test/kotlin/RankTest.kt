@@ -1,19 +1,20 @@
 package lotto
 
+import lotto.model.Rank
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 class RankTest {
 
     @Test
-    fun `sample test`() {
+    fun `should assign the corresponding rank when has bonus`() {
         val matchingNumber = 5
         val hasBonus = true
         assertEquals(Rank.getRank(matchingNumber, hasBonus).toString(),"SECOND")
     }
 
     @Test
-    fun `should assign the corresponding rank`() {
+    fun `should assign the corresponding rank when doesnt have bonus`() {
         val matchingNumber = 5
         val hasBonus = false
 
