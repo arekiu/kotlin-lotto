@@ -31,13 +31,13 @@ class Validator {
 
     fun validateBonusNumber(
         bonusInput: String,
-        userInput: List<String>,
+        winningNumbers: List<Int>,
     ) {
         if (bonusInput.toIntOrNull() == null) {
             throw IllegalArgumentException("Bonus number should be entered")
         }
 
-        if (userInput.contains(bonusInput)) {
+        if (bonusInput.toInt() in winningNumbers) {
             throw IllegalArgumentException("Bonus number should be different than winning numbers")
         }
         if (bonusInput.toInt() !in 1..45) {

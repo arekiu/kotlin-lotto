@@ -13,11 +13,11 @@ class LottoMachine() {
 
     private fun compareTicketToWinningNumbers(
         lotto: Lotto,
-        winningNumbers: List<String>,
+        winningNumbers: List<Int>,
     ): Int {
         var countMatches = 0
         winningNumbers.forEach { number ->
-            if (number.toInt() in lotto.getNumbers()) {
+            if (number in lotto.getNumbers()) {
                 countMatches++
             }
         }
@@ -41,14 +41,14 @@ class LottoMachine() {
 
     fun compareTickets(
         lottos: List<Lotto>,
-        winningNumber: List<String>,
+        winningNumbers: List<Int>,
         bonusNumber: Int,
     ): MutableMap<Rank, Int> {
         val prizeCounter = createMap()
 
         lottos.forEach { ticket ->
             var hasBonus = false
-            val matches = compareTicketToWinningNumbers(ticket, winningNumber)
+            val matches = compareTicketToWinningNumbers(ticket, winningNumbers)
             if (matches == 5) {
                 hasBonus = compareTicketToBonusNumber(ticket, bonusNumber)
             }

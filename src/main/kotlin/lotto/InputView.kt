@@ -16,7 +16,7 @@ class InputView {
         }
     }
 
-    fun takeWinningNumbers(): List<String> {
+    fun takeWinningNumbers(): List<Int> {
         while (true) {
             try {
                 println()
@@ -24,14 +24,14 @@ class InputView {
                 val input = readln().split(",")
                 input.forEach { item -> item.trim() }
                 validator.validateWinningNumbers(input)
-                return input
+                return input.map { it.toInt() }
             } catch (e: IllegalArgumentException) {
                 println(e.message)
             }
         }
     }
 
-    fun takeBonusNumber(winningNumbers: List<String>): Int {
+    fun takeBonusNumber(winningNumbers: List<Int>): Int {
         while (true) {
             try {
                 println(ASK_BONUS_NUMBER)
