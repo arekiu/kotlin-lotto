@@ -12,16 +12,10 @@ class LottoMachine() {
     }
 
     private fun compareTicketToWinningNumbers(
-        lotto: Lotto,
+        ticket: Lotto,
         winningNumbers: List<Int>,
     ): Int {
-        var countMatches = 0
-        winningNumbers.forEach { number ->
-            if (number in lotto.getNumbers()) {
-                countMatches++
-            }
-        }
-        return countMatches
+        return winningNumbers.count { it in ticket.getNumbers() }
     }
 
     private fun compareTicketToBonusNumber(
@@ -59,7 +53,7 @@ class LottoMachine() {
     }
 
     private fun calculateTotalPrize(results: MutableMap<Rank, Int>): Int {
-        var totalPrize = 0
+       var totalPrize = 0
         results.forEach { (key, value) ->
             totalPrize += key.winningMoney * value
         }
