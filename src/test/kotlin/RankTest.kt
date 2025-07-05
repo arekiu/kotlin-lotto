@@ -1,6 +1,6 @@
 package lotto
 
-import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 class RankTest {
@@ -9,7 +9,7 @@ class RankTest {
     fun `sample test`() {
         val matchingNumber = 5
         val hasBonus = true
-        assertThat(Rank.getRank(matchingNumber, hasBonus).toString()).isEqualTo("SECOND")
+        assertEquals(Rank.getRank(matchingNumber, hasBonus).toString(),"SECOND")
     }
 
     @Test
@@ -17,7 +17,7 @@ class RankTest {
         val matchingNumber = 5
         val hasBonus = false
 
-        assertThat(Rank.getRank(matchingNumber, hasBonus).toString()).isEqualTo("THIRD")
+        assertEquals(Rank.getRank(matchingNumber, hasBonus).toString(),"THIRD")
     }
 
     @Test
@@ -25,6 +25,6 @@ class RankTest {
         val matchingNumber = 2
         val hasBonus = false
 
-        assertThat(Rank.getRank(matchingNumber, hasBonus).toString()).isEqualTo("MISS")
+        assertEquals(Rank.getRank(matchingNumber, hasBonus).toString(), "MISS")
     }
 }
