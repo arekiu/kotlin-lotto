@@ -9,8 +9,6 @@
 - Generate Tickets:
 - [x] Calculate number of tickets
 - [x] Generate 6 ticket numbers
-  - [ ] Validate non duplicate numbers
-  - [ ] Numbers should be between 1 and 45
 - [x] Create tickets with generated numbers
 
 - Display tickets
