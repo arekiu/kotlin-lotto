@@ -19,15 +19,15 @@ class LottoMachine() {
     }
 
     private fun compareTicketToBonusNumber(
-        lotto: Lotto,
+        ticket: Lotto,
         bonusNumber: Int,
     ): Boolean {
-        return bonusNumber in lotto.getNumbers()
+        return bonusNumber in ticket.getNumbers()
     }
 
     private fun createMap(): MutableMap<Rank, Int> {
         val prizeCounter = mutableMapOf<Rank, Int>()
-        for (rank in Rank.values()) {
+        for (rank in Rank.entries) {
             prizeCounter[rank] = 0
         }
         return prizeCounter
@@ -46,27 +46,22 @@ class LottoMachine() {
             if (matches == 5) {
                 hasBonus = compareTicketToBonusNumber(ticket, bonusNumber)
             }
-            val chosen = Rank.valueOf(matches, hasBonus)
-            prizeCounter[chosen] = prizeCounter.getValue(chosen) + 1
+            val chosenRank = Rank.valueOf(matches, hasBonus)
+            prizeCounter[chosenRank] = prizeCounter.getValue(chosenRank) + 1
         }
         return prizeCounter
     }
 
-    private fun calculateTotalPrize(results: MutableMap<Rank, Int>): Int {
-       var totalPrize = 0
-        results.forEach { (key, value) ->
-            totalPrize += key.winningMoney * value
-        }
+    fun calculateTotalPrize(results: MutableMap<Rank, Int>): Int {
+        var totalPrize = 0
+        results.map { (key, value) -> totalPrize += key.winningMoney * value }
         return totalPrize
     }
 
     fun calculateReturnRate(
-        results: MutableMap<Rank, Int>,
+        totalPrize: Int,
         userAmount: Int,
-    ): Double {
-        val totalPrize = calculateTotalPrize(results)
-        return (totalPrize.toDouble() / userAmount.toDouble())
-    }
+    ) = totalPrize.toDouble() / userAmount.toDouble()
 
     companion object {
         const val LOTTO_PRICE = 1000
