@@ -1,15 +1,15 @@
 package lotto
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import kotlin.test.DefaultAsserter.assertEquals
 
 class RankTest {
+
     @Test
-    fun `should assign the corresponding rank when it has bonus`() {
+    fun `sample test`() {
         val matchingNumber = 5
         val hasBonus = true
-
-        assertEquals("Should match the right rank", Rank.valueOf(matchingNumber, hasBonus).toString(), "SECOND")
+        assertThat(Rank.getRank(matchingNumber, hasBonus).toString()).isEqualTo("SECOND")
     }
 
     @Test
@@ -17,7 +17,7 @@ class RankTest {
         val matchingNumber = 5
         val hasBonus = false
 
-        assertEquals("Should match the right rank", Rank.valueOf(matchingNumber, hasBonus).toString(), "THIRD")
+        assertThat(Rank.getRank(matchingNumber, hasBonus).toString()).isEqualTo("THIRD")
     }
 
     @Test
@@ -25,6 +25,6 @@ class RankTest {
         val matchingNumber = 2
         val hasBonus = false
 
-        assertEquals("Should match the right rank", Rank.valueOf(matchingNumber, hasBonus).toString(), "MISS")
+        assertThat(Rank.getRank(matchingNumber, hasBonus).toString()).isEqualTo("MISS")
     }
 }
