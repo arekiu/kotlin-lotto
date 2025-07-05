@@ -46,7 +46,7 @@ class LottoMachine() {
             if (matches == 5) {
                 hasBonus = compareTicketToBonusNumber(ticket, bonusNumber)
             }
-            val chosenRank = Rank.valueOf(matches, hasBonus)
+            val chosenRank = Rank.getRank(matches, hasBonus)
             prizeCounter[chosenRank] = prizeCounter.getValue(chosenRank) + 1
         }
         return prizeCounter

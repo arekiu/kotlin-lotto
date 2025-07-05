@@ -10,11 +10,11 @@ enum class Rank(val countOfMatch: Int, val winningMoney: Int, val hasBonus: Bool
     ;
 
     companion object {
-        fun valueOf(
+        fun getRank(
             countOfMatch: Int,
             matchBonus: Boolean,
         ): Rank {
-            return values().find { it ->
+            return entries.find { it ->
                 (it.countOfMatch == countOfMatch && it.hasBonus == matchBonus)
             } ?: MISS
         }
