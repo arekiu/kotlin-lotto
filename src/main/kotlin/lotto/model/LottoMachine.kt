@@ -1,31 +1,12 @@
 package lotto.model
 
-class LottoMachine() {
+class LottoMachine(
+    val lottoTickets: List<Lotto>,
+    val prizeNumbers: PrizeNumbers,
+    private val lottoManager: LottoManager = LottoManager()
+) {
 
-    private val lottoManager = LottoManager()
-    private val numberGenerator = NumberGenerator()
-    private lateinit var lottoTickets: List<Lotto>
-    private var winningNumbers: List<Int> = emptyList()
-    private var bonusNumber: Int = 0
-
-    fun createTickets(userAmount: Int) {
-        val amountOfTickets = lottoManager.calculateTickets(userAmount)
-        lottoTickets = List(amountOfTickets) { lottoManager.createLottoTicket(numberGenerator.generateNumbers()) }
-    }
-
-    fun setWinningNumbers(numbers: List<Int>) {
-        winningNumbers = numbers
-    }
-
-    fun setBonusNumber(number: Int) {
-        bonusNumber = number
-    }
-
-    fun getTickets() = lottoTickets
-
-    fun getWinningNumbers() = winningNumbers
-
-    fun evaluateTicketsResult() = lottoManager.manageTicketsEvaluation(lottoTickets, winningNumbers, bonusNumber)
+    fun evaluateTicketsResult() = lottoManager.manageTicketsEvaluation(lottoTickets, prizeNumbers)
 
     fun evaluateReturnRate(results: MutableMap<Rank, Int>, userAmount: Int): Double {
         val totalPrize = lottoManager.calculateTotalPrize(results)

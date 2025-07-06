@@ -1,30 +1,35 @@
 package lotto.controller
 
 import lotto.model.LottoMachine
+import lotto.model.PrizeNumbers
+import lotto.model.TicketsSeller
 import lotto.view.InputView
 import lotto.view.ResultView
 
 class LottoController {
     private val inputView = InputView()
     private val resultView = ResultView()
-    private val lottoMachine = LottoMachine()
+    private val ticketSeller = TicketsSeller()
+
     private var userAmount = 0
 
     fun runMachine() {
-        handleUserInput()
-        handleResults()
+        val dataLottoMachine = handleUserInput()
+        handleResults(dataLottoMachine)
     }
 
-    fun handleUserInput() {
+    fun handleUserInput(): LottoMachine {
         userAmount = inputView.takePurchaseInput()
-        lottoMachine.createTickets(userAmount)
-        resultView.printLottos(lottoMachine.getTickets())
+        val tickets = ticketSeller.createRandomTickets(userAmount)
+        resultView.printLottos(tickets)
 
-        lottoMachine.setWinningNumbers(inputView.takeWinningNumbers())
-        lottoMachine.setBonusNumber(inputView.takeBonusNumber(lottoMachine.getWinningNumbers()))
+        val winningNumbers = inputView.takeWinningNumbers()
+        val bonusNumber = inputView.takeBonusNumber(winningNumbers)
+        val prizeNumbers = PrizeNumbers(winningNumbers, bonusNumber)
+        return LottoMachine(tickets, prizeNumbers)
     }
 
-    fun handleResults() {
+    fun handleResults(lottoMachine : LottoMachine) {
         val ticketsResult = lottoMachine.evaluateTicketsResult()
         resultView.printResult(ticketsResult)
 

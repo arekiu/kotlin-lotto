@@ -2,10 +2,6 @@ package lotto.model
 
 class LottoManager {
 
-    fun calculateTickets(userAmount: Int) = userAmount / LOTTO_PRICE
-
-    fun createLottoTicket(lottoNumbers: List<Int>) = Lotto(lottoNumbers)
-
     private fun createMap(): MutableMap<Rank, Int> {
         val prizeCounter = mutableMapOf<Rank, Int>()
         for (rank in Rank.entries) {
@@ -16,12 +12,11 @@ class LottoManager {
 
     fun manageTicketsEvaluation(
         tickets: List<Lotto>,
-        winningNumbers: List<Int>,
-        bonusNumber: Int,
+        prizeNumbers: PrizeNumbers
     ): MutableMap<Rank, Int> {
         val prizeCounter = createMap()
         tickets.forEach { ticket ->
-            ticket.compareTicket(winningNumbers, bonusNumber)
+            ticket.compareTicket(prizeNumbers.winningNumbers, prizeNumbers.bonusNumber)
             val chosenRank = Rank.getRank(ticket.numberOfHits, ticket.hasBonus)
             prizeCounter[chosenRank] = prizeCounter.getValue(chosenRank) + 1
         }
@@ -39,7 +34,4 @@ class LottoManager {
         userAmount: Int,
     ) = totalPrize.toDouble() / userAmount.toDouble()
 
-    companion object {
-        const val LOTTO_PRICE = 1000
-    }
 }
