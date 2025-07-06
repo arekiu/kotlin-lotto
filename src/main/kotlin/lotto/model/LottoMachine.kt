@@ -1,8 +1,8 @@
 package lotto.model
 
 class LottoMachine(
-    val lottoTickets: List<Lotto>,
-    val prizeNumbers: PrizeNumbers,
+    private val lottoTickets: List<Lotto>,
+    private val prizeNumbers: PrizeNumbers,
     private val lottoManager: LottoManager = LottoManager()
 ) {
 
