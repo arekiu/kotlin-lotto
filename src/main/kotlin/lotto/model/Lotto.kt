@@ -1,20 +1,15 @@
 package lotto.model
 
-class Lotto(val lottoNumbers: List<Int>) {
+class Lotto(
+    val lottoNumbers: List<Int>,
+    var hasBonus: Boolean = false,
+    var numberOfHits: Int = 0
+) {
     init {
         require(lottoNumbers.count() == 6)
         require(numbersAreInRange(lottoNumbers))
         require(numbersAreNotDuplicated(lottoNumbers))
     }
-
-    private var hasBonus = false
-    private var numberOfHits = 0
-
-    fun getNumbers() = lottoNumbers
-
-    fun getBonusStatus() = hasBonus
-
-    fun getNumberOfHits() = numberOfHits
 
     private fun numbersAreInRange(lottoNumbers: List<Int>): Boolean {
         return lottoNumbers.all { it in 1..45 }

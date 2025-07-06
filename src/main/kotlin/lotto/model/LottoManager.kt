@@ -24,7 +24,7 @@ class LottoManager {
         val prizeCounter = createMap()
         tickets.forEach { ticket ->
             ticket.compareTicket(winningNumbers, bonusNumber)
-            val chosenRank = Rank.getRank(ticket.getNumberOfHits(), ticket.getBonusStatus())
+            val chosenRank = Rank.getRank(ticket.numberOfHits, ticket.hasBonus)
             prizeCounter[chosenRank] = prizeCounter.getValue(chosenRank) + 1
         }
         return prizeCounter
