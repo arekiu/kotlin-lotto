@@ -7,7 +7,7 @@ class ResultView() {
     fun printLottos(lottos: List<Lotto>) {
         println("You have purchased ${lottos.count()} tickets.")
         lottos.forEach { lotto ->
-            val lottoNumbers = lotto.getNumbers()
+            val lottoNumbers = lotto.lottoNumbers
             println(lottoNumbers.joinToString(",", "[", "]"))
         }
     }
@@ -16,11 +16,15 @@ class ResultView() {
         println()
         println(PRESENT_WINNING)
         println(SEPARATOR)
-        println("3 Matches (5,000 KRW) - ${results.getValue(Rank.FIFTH)} tickets")
-        println("4 Matches (50,000 KRW) - ${results.getValue(Rank.FOURTH)} tickets")
-        println("5 Matches (1,500,000 KRW) - ${results.getValue(Rank.THIRD)} tickets")
-        println("5 Matches + Bonus Ball (30,000,000 KRW) - ${results.getValue(Rank.SECOND)} tickets")
-        println("6 Matches (2,000,000,000 KRW) - ${results.getValue(Rank.FIRST)} tickets")
+        println(
+            """
+        3 Matches (${ "%,d".format(Rank.FIFTH.winningMoney) } KRW) - ${results.getValue(Rank.FIFTH)} tickets
+        4 Matches (${ "%,d".format(Rank.FOURTH.winningMoney) } KRW) - ${results.getValue(Rank.FOURTH)} tickets
+        5 Matches (${ "%,d".format(Rank.THIRD.winningMoney) } KRW) - ${results.getValue(Rank.THIRD)} tickets
+        5 Matches + Bonus Ball (${ "%,d".format(Rank.SECOND.winningMoney) } KRW) - ${results.getValue(Rank.SECOND)} tickets
+        6 Matches (${ "%,d".format(Rank.FIRST.winningMoney) } KRW) - ${results.getValue(Rank.FIRST)} tickets
+        """.trimIndent()
+        )
     }
 
     fun printReturnRate(rate: Double) {
