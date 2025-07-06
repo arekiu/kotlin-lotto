@@ -17,7 +17,7 @@ class LottoMachineTest {
         val lottoMachine = LottoMachine()
         lottoMachine.createTickets(1000)
         val tickets = lottoMachine.getTickets()
-        val numbersInTicket = tickets[0].getNumbers()
+        val numbersInTicket = tickets[0].lottoNumbers
         assertEquals(numbersInTicket.count(), 6)
     }
 

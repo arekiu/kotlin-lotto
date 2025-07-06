@@ -3,13 +3,14 @@ package lotto.model
 class LottoMachine() {
 
     private val lottoManager = LottoManager()
+    private val numberGenerator = NumberGenerator()
     private lateinit var lottoTickets: List<Lotto>
     private var winningNumbers: List<Int> = emptyList()
     private var bonusNumber: Int = 0
 
     fun createTickets(userAmount: Int) {
         val amountOfTickets = lottoManager.calculateTickets(userAmount)
-        lottoTickets = List(amountOfTickets) { lottoManager.createLottoTicket(lottoManager.generateNumbers()) }
+        lottoTickets = List(amountOfTickets) { lottoManager.createLottoTicket(numberGenerator.generateNumbers()) }
     }
 
     fun setWinningNumbers(numbers: List<Int>) {

@@ -4,8 +4,6 @@ class LottoManager {
 
     fun calculateTickets(userAmount: Int) = userAmount / LOTTO_PRICE
 
-    fun generateNumbers() = (MINIMUM_VALUE..MAXIMUM_VALUE).shuffled().take(6).sorted()
-
     fun createLottoTicket(lottoNumbers: List<Int>) = Lotto(lottoNumbers)
 
     private fun createMap(): MutableMap<Rank, Int> {
@@ -43,7 +41,5 @@ class LottoManager {
 
     companion object {
         const val LOTTO_PRICE = 1000
-        const val MINIMUM_VALUE = 1
-        const val MAXIMUM_VALUE = 45
     }
 }
