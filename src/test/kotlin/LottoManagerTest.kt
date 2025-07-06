@@ -1,12 +1,14 @@
 package lotto
 
 import lotto.model.LottoManager
+import lotto.model.PrizeNumbers
+import lotto.model.TicketGenerator
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.assertEquals
 
 class LottoManagerTest {
-
     val lottoManager = LottoManager()
+    val ticketGenerator = TicketGenerator()
 
     @Test
     fun `correct return rate is calculated`() {
@@ -17,10 +19,11 @@ class LottoManagerTest {
 
     @Test
     fun `calculates right prize number`() {
-        val lottoTicket = lottoManager.createLottoTicket(listOf(1,2,3,4,5,6))
+        val lottoTicket = ticketGenerator.createLottoTicket(listOf(1,2,3,4,5,6))
         val winningNumbers = listOf(1,2,3,4,5,7)
         val bonusNumber = 6
-        val results = lottoManager.manageTicketsEvaluation(listOf(lottoTicket), winningNumbers, bonusNumber)
+        val prizeNumbers = PrizeNumbers(winningNumbers, bonusNumber)
+        val results = lottoManager.manageTicketsEvaluation(listOf(lottoTicket),prizeNumbers )
         assertEquals(lottoManager.calculateTotalPrize(results), 30000000)
     }
 }
