@@ -1,48 +1,26 @@
 package lotto.model
 
 class Validator {
+
     fun validateAmount(userAmount: String) {
-        if (userAmount.toIntOrNull() == null) {
-            throw IllegalArgumentException("Input is not a number")
-        }
-        if ((userAmount.toInt() % LOTTO_PRICE) != 0) {
-            throw IllegalArgumentException("Input is not multiple of 1000")
-        }
+        require(userAmount.toIntOrNull() != null) { "Input is not a number" }
+        require((userAmount.toInt() % LOTTO_PRICE) == 0) { "Input is not multiple of 1000" }
     }
 
     fun validateWinningNumbers(userInput: List<String>) {
-        userInput.forEach { item ->
-            if (item.toIntOrNull() == null) {
-                throw IllegalArgumentException("Input has invalid numbers")
-            }
-        }
-        if (userInput.count() != 6) {
-            throw IllegalArgumentException("Input should have 6 numbers")
-        }
-        if (userInput.count() != userInput.toSet().count()) {
-            throw IllegalArgumentException("Numbers should be unique")
-        }
-        userInput.forEach { item ->
-            if (item.toInt() !in 1..45) {
-                throw IllegalArgumentException("The winning numbers should be between 1 and 45")
-            }
-        }
+        require(userInput.all { it.toIntOrNull() != null }) { "Input has invalid numbers" }
+        require(userInput.count() == 6) { "Input should have 6 numbers" }
+        require(userInput.count() == userInput.toSet().count()) { "Numbers should be unique" }
+        require(userInput.all { it.toInt() in 1..45 }) { "Numbers should be between 1 and 45" }
     }
 
     fun validateBonusNumber(
         bonusInput: String,
         winningNumbers: List<Int>,
     ) {
-        if (bonusInput.toIntOrNull() == null) {
-            throw IllegalArgumentException("Bonus number should be entered")
-        }
-
-        if (bonusInput.toInt() in winningNumbers) {
-            throw IllegalArgumentException("Bonus number should be different than winning numbers")
-        }
-        if (bonusInput.toInt() !in 1..45) {
-            throw IllegalArgumentException("The bonus number should be between 1 and 45")
-        }
+        require(bonusInput.toIntOrNull() != null) {"Bonus number should be entered"}
+        require(bonusInput.toInt() !in winningNumbers) {"Bonus number should be different than winning numbers"}
+        require(bonusInput.toInt() in 1..45) {"Bonus number should be between 1 and 45"}
     }
 
     companion object {
