@@ -1,3 +1,3 @@
 package lotto.model
 
-data class PrizeNumbers(val winningNumbers: List<Int>, val bonusNumber: Int)
+class PrizeNumbers(val winningNumbers: List<LottoNumber>, val bonusNumber: LottoNumber) : LottoTicket(winningNumbers)
