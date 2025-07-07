@@ -18,7 +18,7 @@ class InputView {
         }
     }
 
-    fun takeNumberOfCustomTickets(totalNumberOfTickets : Int): Int {
+    fun takeNumberOfCustomTickets(totalNumberOfTickets: Int): Int {
         while (true) {
             try {
                 println(ASK_NUMBER_OF_TICKETS)
@@ -31,9 +31,12 @@ class InputView {
         }
     }
 
-    fun takeCustomLottoNumbers(numberOfManualTickets : Int): MutableList<List<Int>> {
-        println(ASK_TICKET_NUMBERS)
+    fun takeCustomLottoNumbers(numberOfManualTickets: Int): MutableList<List<Int>> {
         val numbersForCustomTickets = mutableListOf<List<Int>>()
+        if (numberOfManualTickets == 0) {
+            return numbersForCustomTickets
+        }
+        println(ASK_TICKET_NUMBERS)
         while (true) {
             try {
                 val input = readln().split(",")
