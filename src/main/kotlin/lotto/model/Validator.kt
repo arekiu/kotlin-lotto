@@ -13,7 +13,7 @@ class Validator {
         require(input.toInt() >= 0) { "Input must be positive number" }
     }
 
-    fun validateWinningNumbers(userInput: List<String>) {
+    fun validateTicketNumbers(userInput: List<String>) {
         require(userInput.all { it.toIntOrNull() != null }) { "Input has invalid numbers" }
         require(userInput.count() == 6) { "Input should have 6 numbers" }
         require(userInput.count() == userInput.toSet().count()) { "Numbers should be unique" }

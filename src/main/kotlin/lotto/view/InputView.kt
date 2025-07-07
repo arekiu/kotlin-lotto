@@ -38,7 +38,7 @@ class InputView {
             try {
                 val input = readln().split(",")
                 input.forEach { item -> item.trim() }
-                validator.validateWinningNumbers(input)
+                validator.validateTicketNumbers(input)
                 val ticketNumbers = input.map { it.toInt() }
                 numbersForCustomTickets.add(ticketNumbers)
                 if (numbersForCustomTickets.size == numberOfManualTickets) {
@@ -58,7 +58,7 @@ class InputView {
                 println(ASK_WINNING_NUMBERS)
                 val input = readln().split(",")
                 input.forEach { item -> item.trim() }
-                validator.validateWinningNumbers(input)
+                validator.validateTicketNumbers(input)
                 return input.map { it.toInt() }
             } catch (e: IllegalArgumentException) {
                 println(e.message)
