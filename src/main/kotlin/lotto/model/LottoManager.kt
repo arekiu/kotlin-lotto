@@ -11,17 +11,34 @@ class LottoManager {
     }
 
     fun manageTicketsEvaluation(
-        tickets: List<Lotto>,
+        tickets: List<LottoTicket>,
         prizeNumbers: PrizeNumbers
     ): MutableMap<Rank, Int> {
         val prizeCounter = createMap()
         tickets.forEach { ticket ->
-            ticket.compareTicket(prizeNumbers.winningNumbers, prizeNumbers.bonusNumber)
+            compareTicket(ticket, prizeNumbers)
             val chosenRank = Rank.getRank(ticket.numberOfHits, ticket.hasBonus)
             prizeCounter[chosenRank] = prizeCounter.getValue(chosenRank) + 1
         }
         return prizeCounter
     }
+
+    fun compareTicket(lottoTicket: LottoTicket, prizeNumbers: PrizeNumbers) {
+        lottoTicket.numberOfHits = compareTicketToWinningNumbers(lottoTicket, prizeNumbers.winningNumbers)
+        if (lottoTicket.numberOfHits == 5) {
+            lottoTicket.hasBonus = compareTicketToBonusNumber(lottoTicket, prizeNumbers.bonusNumber)
+        }
+    }
+
+    private fun compareTicketToWinningNumbers(
+        lottoTicket: LottoTicket,
+        winningNumbers: List<LottoNumber>,
+    ) = winningNumbers.count { it in lottoTicket.lottoNumbers }
+
+    private fun compareTicketToBonusNumber(
+        lottoTicket: LottoTicket,
+        bonusNumber: LottoNumber,
+    ) = bonusNumber in lottoTicket.lottoNumbers
 
     fun calculateTotalPrize(results: MutableMap<Rank, Int>): Int {
         var totalPrize = 0
@@ -33,5 +50,6 @@ class LottoManager {
         totalPrize: Int,
         userAmount: Int,
     ) = totalPrize.toDouble() / userAmount.toDouble()
+
 
 }
