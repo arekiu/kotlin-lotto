@@ -12,12 +12,17 @@ class ResultView() {
         }
     }
 
-    fun printResult(results: MutableMap<Rank, Int>) {
+    fun printResult(results: MutableMap<Rank, Int>, returnRate: Double) {
         println()
-        println(PRESENT_WINNING)
-        println(SEPARATOR)
+        printResultTickets(results)
+        printReturnRate(returnRate)
+    }
+
+    fun printResultTickets(results: MutableMap<Rank, Int>){
         println(
             """
+        $PRESENT_WINNING
+        $SEPARATOR
         3 Matches (${ "%,d".format(Rank.FIFTH.winningMoney) } KRW) - ${results.getValue(Rank.FIFTH)} tickets
         4 Matches (${ "%,d".format(Rank.FOURTH.winningMoney) } KRW) - ${results.getValue(Rank.FOURTH)} tickets
         5 Matches (${ "%,d".format(Rank.THIRD.winningMoney) } KRW) - ${results.getValue(Rank.THIRD)} tickets
@@ -27,8 +32,8 @@ class ResultView() {
         )
     }
 
-    fun printReturnRate(rate: Double) {
-        val formattedRate = String.format("%.1f", rate).replace(',', '.')
+    fun printReturnRate(returnRate: Double) {
+        val formattedRate = String.format("%.1f", returnRate).replace(',', '.')
         println("Total return rate is $formattedRate")
     }
 

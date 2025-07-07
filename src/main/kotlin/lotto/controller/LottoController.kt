@@ -25,9 +25,7 @@ class LottoController {
 
     fun handleResults(lottoMachine : LottoMachine, userAmount: Int) {
         val ticketsResult = lottoMachine.evaluateTicketsResult()
-        resultView.printResult(ticketsResult)
-
         val returnRate = lottoMachine.evaluateReturnRate(ticketsResult, userAmount)
-        resultView.printReturnRate(returnRate)
+        resultView.printResult(ticketsResult, returnRate)
     }
 }
