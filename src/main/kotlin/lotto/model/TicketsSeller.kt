@@ -11,7 +11,8 @@ class TicketsSeller(
         return List(numberOfTickets) { ticketGenerator.createLottoTicket(numberGenerator.generateRandomNumbers()) }
     }
 
-    fun createCustomTickets(numbersForLottos : List<List<Int>>) = numbersForLottos.map { ticketGenerator.createLottoTicket(it) }
+    fun createCustomTickets(numbersForLottos: List<List<Int>>) =
+        numbersForLottos.map { ticketGenerator.createLottoTicket(it) }
 
 
     companion object {

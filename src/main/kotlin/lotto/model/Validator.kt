@@ -7,7 +7,7 @@ class Validator {
         require((userAmount.toInt() % LOTTO_PRICE) == 0) { "Input is not multiple of 1000" }
     }
 
-    fun validateNumberOfTickets(input : String, totalNumberOfTickets : Int) {
+    fun validateNumberOfTickets(input: String, totalNumberOfTickets: Int) {
         require(input.toIntOrNull() != null) { "Input is not a number" }
         require(input.toInt() <= totalNumberOfTickets) { "Input is bigger than number of tickets" }
         require(input.toInt() >= 0) { "Input must be positive number" }
