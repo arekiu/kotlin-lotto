@@ -1,7 +1,7 @@
 package lotto.model
 
 class LottoMachine(
-    private val lottoTickets: List<Lotto>,
+    private val lottoTickets: List<LottoTicket>,
     private val prizeNumbers: PrizeNumbers,
     private val lottoManager: LottoManager = LottoManager()
 ) {
