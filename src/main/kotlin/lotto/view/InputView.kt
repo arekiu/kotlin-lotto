@@ -18,6 +18,19 @@ class InputView {
         }
     }
 
+    fun takeNumberOfCustomTickets(totalNumberOfTickets : Int): Int {
+        while (true) {
+            try {
+                println(ASK_NUMBER_OF_TICKETS)
+                val input = readln()
+                validator.validateNumberOfTickets(input, totalNumberOfTickets)
+                return input.toInt()
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
+    }
+
     fun takeWinningNumbers(): List<Int> {
         while (true) {
             try {
@@ -48,6 +61,7 @@ class InputView {
 
     companion object {
         const val ASK_AMOUNT = "Please enter the purchase amount."
+        const val ASK_NUMBER_OF_TICKETS = "Enter the number of manual tickets to purchase."
         const val ASK_WINNING_NUMBERS = "Please enter last week's winning numbers."
         const val ASK_BONUS_NUMBER = "Please enter the bonus number."
     }

@@ -14,6 +14,8 @@ class LottoController {
         val userAmount = inputView.takePurchaseInput()
         val numberOfTickets = ticketSeller.calculateTickets(userAmount)
 
+        val numberOfManualTickets = inputView.takeNumberOfCustomTickets(numberOfTickets)
+
         val tickets = ticketSeller.createRandomTickets(numberOfTickets)
         resultView.printLottos(tickets)
 

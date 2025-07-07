@@ -8,7 +8,7 @@
 
 - User can create custom tickets
 - [x] Calculate total of tickets to be generated
-- [ ] Define how many tickets are custom-generated
+- [x] Define how many tickets are custom-generated
 - [ ] Ask user numbers to be included in tickets
 - [ ] Create tickets
 
