@@ -13,7 +13,7 @@
 - [x] Create tickets
 
 - Generate Random Tickets:
-- [ ] Use remaining number to create random tickets
+- [x] Use remaining number to create random tickets
 - [x] Generate 6 ticket numbers
 - [x] Create tickets with generated numbers
 
