@@ -10,7 +10,7 @@ class RankTest {
     fun `should assign the corresponding rank when has bonus`() {
         val matchingNumber = 5
         val hasBonus = true
-        assertEquals(Rank.getRank(matchingNumber, hasBonus).toString(),"SECOND")
+        assertEquals(Rank.getRank(matchingNumber, hasBonus).toString(), "SECOND")
     }
 
     @Test
@@ -18,7 +18,7 @@ class RankTest {
         val matchingNumber = 5
         val hasBonus = false
 
-        assertEquals(Rank.getRank(matchingNumber, hasBonus).toString(),"THIRD")
+        assertEquals(Rank.getRank(matchingNumber, hasBonus).toString(), "THIRD")
     }
 
     @Test

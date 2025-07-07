@@ -1,8 +1,8 @@
 package lotto
 
 import lotto.model.TicketsSeller
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 
 class TicketSellerTest {
     @Test
