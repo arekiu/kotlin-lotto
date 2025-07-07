@@ -2,8 +2,8 @@ package lotto.model
 
 class Lotto(
     val lottoNumbers: List<Int>,
-    var hasBonus: Boolean = false,
-    var numberOfHits: Int = 0
+    var numberOfHits : Int = 0,
+    var hasBonus : Boolean = false
 ) {
     init {
         require(lottoNumbers.count() == 6)
@@ -20,19 +20,17 @@ class Lotto(
     }
 
     fun compareTicket(winningNumbers: List<Int>, bonusNumber: Int) {
-        compareTicketToWinningNumbers(winningNumbers)
-        if (numberOfHits == 5) compareTicketToBonusNumber(bonusNumber)
+        numberOfHits = compareTicketToWinningNumbers(winningNumbers)
+        if (numberOfHits == 5){
+            hasBonus = compareTicketToBonusNumber(bonusNumber)
+        }
     }
 
     private fun compareTicketToWinningNumbers(
         winningNumbers: List<Int>,
-    ) {
-        numberOfHits = winningNumbers.count { it in lottoNumbers }
-    }
+    ) = winningNumbers.count { it in lottoNumbers }
 
     private fun compareTicketToBonusNumber(
         bonusNumber: Int,
-    ) {
-        hasBonus = bonusNumber in lottoNumbers
-    }
+    ) = bonusNumber in lottoNumbers
 }
