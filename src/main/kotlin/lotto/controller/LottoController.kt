@@ -12,7 +12,9 @@ class LottoController {
 
     fun run() {
         val userAmount = inputView.takePurchaseInput()
-        val tickets = ticketSeller.createRandomTickets(userAmount)
+        val numberOfTickets = ticketSeller.calculateTickets(userAmount)
+
+        val tickets = ticketSeller.createRandomTickets(numberOfTickets)
         resultView.printLottos(tickets)
 
         val prizeNumbers = createPrizeNumbers()

@@ -7,7 +7,7 @@
 - [x] Ticket purchase should be multiple of 1000
 
 - User can create custom tickets
-- [ ] Calculate total of tickets to be generated
+- [x] Calculate total of tickets to be generated
 - [ ] Define how many tickets are custom-generated
 - [ ] Ask user numbers to be included in tickets
 - [ ] Create tickets
