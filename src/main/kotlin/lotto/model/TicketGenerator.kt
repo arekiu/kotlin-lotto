@@ -2,6 +2,9 @@ package lotto.model
 
 class TicketGenerator() {
 
-    fun createLottoTicket(lottoNumbers: List<Int>) = Lotto(lottoNumbers)
+    fun generateLottoNumbers(numbers: List<Int>) = numbers.map { number -> LottoNumber.from(number) }
 
+    fun createLottoTicket(numbers: List<Int>): LottoTicket {
+        return LottoTicket(generateLottoNumbers(numbers))
+    }
 }
