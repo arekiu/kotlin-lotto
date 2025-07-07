@@ -7,9 +7,10 @@ class TicketsSeller(
 
     fun calculateTickets(userAmount: Int) = userAmount / LOTTO_PRICE
 
-    fun createRandomTickets(userAmount: Int): List<Lotto> {
+    fun createRandomTickets(userAmount: Int): List<LottoTicket> {
         val amountOfTickets = calculateTickets(userAmount)
-        return List(amountOfTickets) { ticketGenerator.createLottoTicket(numberGenerator.generateNumbers()) }
+        val randomNumbers = numberGenerator.generateRandomNumbers()
+        return List(amountOfTickets) { ticketGenerator.createLottoTicket(randomNumbers) }
     }
 
     companion object {
