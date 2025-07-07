@@ -18,9 +18,9 @@ class Validator {
         bonusInput: String,
         winningNumbers: List<Int>,
     ) {
-        require(bonusInput.toIntOrNull() != null) {"Bonus number should be entered"}
-        require(bonusInput.toInt() !in winningNumbers) {"Bonus number should be different than winning numbers"}
-        require(bonusInput.toInt() in 1..45) {"Bonus number should be between 1 and 45"}
+        require(bonusInput.toIntOrNull() != null) { "Bonus number should be entered" }
+        require(bonusInput.toInt() !in winningNumbers) { "Bonus number should be different than winning numbers" }
+        require(bonusInput.toInt() in 1..45) { "Bonus number should be between 1 and 45" }
     }
 
     companion object {
