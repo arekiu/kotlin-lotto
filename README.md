@@ -9,7 +9,7 @@
 - User can create custom tickets
 - [x] Calculate total of tickets to be generated
 - [x] Define how many tickets are custom-generated
-- [ ] Ask user numbers to be included in tickets
+- [x] Ask user numbers to be included in tickets
 - [ ] Create tickets
 
 - Generate Random Tickets:
