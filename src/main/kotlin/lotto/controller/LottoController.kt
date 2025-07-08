@@ -23,7 +23,7 @@ class LottoController(
         handleResults(dataLottoMachine, userAmount)
     }
 
-    fun buyTickets(userAmount: Int): List<LottoTicket> {
+    private fun buyTickets(userAmount: Int): List<LottoTicket> {
         var numberOfTickets = ticketSeller.calculateTickets(userAmount)
         val numberOfManualTickets = inputView.takeNumberOfCustomTickets(numberOfTickets)
         val customTicketNumbers = inputView.takeCustomLottoNumbers(numberOfManualTickets)
@@ -34,7 +34,7 @@ class LottoController(
         return customTickets + randomTickets
     }
 
-    fun createPrizeNumbers(): PrizeNumbers {
+    private fun createPrizeNumbers(): PrizeNumbers {
         val winningNumbers = inputView.takeWinningNumbers()
         val bonusNumber = inputView.takeBonusNumber(winningNumbers)
         val winningLottoNumbers = ticketGenerator.generateLottoNumbers(winningNumbers)
@@ -42,7 +42,7 @@ class LottoController(
         return PrizeNumbers(winningLottoNumbers, bonusLottoNumber)
     }
 
-    fun handleResults(lottoMachine: LottoMachine, userAmount: Int) {
+    private fun handleResults(lottoMachine: LottoMachine, userAmount: Int) {
         val ticketsResult = lottoMachine.evaluateTicketsResult()
         val returnRate = lottoMachine.evaluateReturnRate(ticketsResult, userAmount)
         resultView.printResult(ticketsResult, returnRate)
