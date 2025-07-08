@@ -4,11 +4,12 @@ import lotto.model.*
 import lotto.view.InputView
 import lotto.view.ResultView
 
-class LottoController {
-    private val inputView = InputView()
-    private val resultView = ResultView()
-    private val ticketSeller = TicketsSeller()
-    private val ticketGenerator = TicketGenerator()
+class LottoController(
+    private val inputView: InputView,
+    private val resultView: ResultView,
+    private val ticketSeller: TicketsSeller,
+    private val ticketGenerator: TicketGenerator
+) {
 
     fun run() {
         val userAmount = inputView.takePurchaseInput()
