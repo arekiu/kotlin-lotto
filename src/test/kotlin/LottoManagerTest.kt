@@ -21,7 +21,7 @@ class LottoManagerTest {
     @Test
     fun `calculates right prize number`() {
         val lottoTicket = ticketGenerator.createLottoTicket(listOf(1, 2, 3, 4, 5, 6))
-        val winningNumbers = ticketGenerator.generateLottoNumbers(listOf(1, 2, 3, 4, 5, 7))
+        val winningNumbers = ticketGenerator.createLottoTicket(listOf(1, 2, 3, 4, 5, 7))
         val bonusNumber = LottoNumber.from(6)
         val prizeNumbers = PrizeNumbers(winningNumbers, bonusNumber)
         val results = lottoManager.manageTicketsEvaluation(listOf(lottoTicket), prizeNumbers)

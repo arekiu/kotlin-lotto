@@ -24,7 +24,7 @@ class LottoManager {
     }
 
     fun compareTicket(lottoTicket: LottoTicket, prizeNumbers: PrizeNumbers) {
-        lottoTicket.numberOfHits = compareTicketToWinningNumbers(lottoTicket, prizeNumbers.winningNumbers)
+        lottoTicket.numberOfHits = compareTicketToWinningNumbers(lottoTicket, prizeNumbers.winningNumbersTicket)
         if (lottoTicket.numberOfHits == 5) {
             lottoTicket.hasBonus = compareTicketToBonusNumber(lottoTicket, prizeNumbers.bonusNumber)
         }
@@ -32,8 +32,8 @@ class LottoManager {
 
     private fun compareTicketToWinningNumbers(
         lottoTicket: LottoTicket,
-        winningNumbers: List<LottoNumber>,
-    ) = winningNumbers.count { it in lottoTicket.lottoNumbers }
+        winningNumbers: LottoTicket,
+    ) = winningNumbers.lottoNumbers.count() { it in lottoTicket.lottoNumbers }
 
     private fun compareTicketToBonusNumber(
         lottoTicket: LottoTicket,

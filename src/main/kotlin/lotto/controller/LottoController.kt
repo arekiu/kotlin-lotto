@@ -37,9 +37,9 @@ class LottoController(
     private fun createPrizeNumbers(): PrizeNumbers {
         val winningNumbers = inputView.takeWinningNumbers()
         val bonusNumber = inputView.takeBonusNumber(winningNumbers)
-        val winningLottoNumbers = ticketGenerator.generateLottoNumbers(winningNumbers)
+        val winningLottoNumbersTicket = ticketGenerator.createLottoTicket(winningNumbers)
         val bonusLottoNumber = LottoNumber.from(bonusNumber)
-        return PrizeNumbers(winningLottoNumbers, bonusLottoNumber)
+        return PrizeNumbers(winningLottoNumbersTicket, bonusLottoNumber)
     }
 
     private fun handleResults(lottoMachine: LottoMachine, userAmount: Int) {
