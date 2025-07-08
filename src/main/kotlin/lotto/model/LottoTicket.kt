@@ -1,6 +1,6 @@
 package lotto.model
 
-open class LottoTicket(
+class LottoTicket(
     val lottoNumbers: List<LottoNumber>,
     var numberOfHits: Int = 0,
     var hasBonus: Boolean = false
