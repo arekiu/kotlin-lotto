@@ -14,4 +14,11 @@ class LottoTicket(
         return lottoNumbers.count() == lottoNumbers.toSet().count()
     }
 
+    fun compareTicket(prizeNumbers: PrizeNumbers) {
+        numberOfHits = prizeNumbers.winningNumbersTicket.lottoNumbers.count { it in lottoNumbers }
+        if (numberOfHits == 5) {
+            hasBonus = prizeNumbers.bonusNumber in lottoNumbers
+        }
+    }
+
 }

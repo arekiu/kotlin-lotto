@@ -1,23 +1,23 @@
 package lotto.view
 
-import lotto.model.LottoTicket
+import lotto.model.LottoTickets
 import lotto.model.Rank
 
 class ResultView() {
-    fun printLottos(lottos: List<LottoTicket>) {
-        println("You have purchased ${lottos.count()} tickets.")
-        lottos.forEach { lotto ->
+    fun printLottos(lottos: LottoTickets) {
+        println("You have purchased ${lottos.tickets.count()} tickets.")
+        lottos.tickets.forEach { lotto ->
             println(lotto.lottoNumbers.joinToString(",", "[", "]"))
         }
     }
 
-    fun printResult(results: MutableMap<Rank, Int>, returnRate: Double) {
+    fun printResult(results: Map<Rank, Int>, returnRate: Double) {
         println()
         printResultTickets(results)
         printReturnRate(returnRate)
     }
 
-    fun printResultTickets(results: MutableMap<Rank, Int>) {
+    fun printResultTickets(results: Map<Rank, Int>) {
         println(
             """
         $PRESENT_WINNING
