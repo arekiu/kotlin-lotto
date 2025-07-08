@@ -1,6 +1,6 @@
 package lotto.model
 
-class Validator {
+class InputValidator {
 
     fun validateAmount(userAmount: String) {
         require(userAmount.toIntOrNull() != null) { "Input is not a number" }

@@ -1,9 +1,9 @@
 package lotto.view
 
-import lotto.model.Validator
+import lotto.model.InputValidator
 
 class InputView {
-    val validator = Validator()
+    val validator = InputValidator()
 
     fun takePurchaseInput(): Int {
         while (true) {
