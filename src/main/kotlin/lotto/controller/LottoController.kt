@@ -20,7 +20,12 @@ class LottoController(
 
         val prizeNumbers = createPrizeNumbers()
 
-        handleResults(allTickets, prizeNumbers, userAmount)
+        val ticketsResult = allTickets.evaluateAll(prizeNumbers)
+
+        val lottoEvaluator = LottoEvaluator(ticketsResult, userAmount)
+        val returnRate = lottoEvaluator.evaluateReturnRate()
+
+        resultView.printResult(ticketsResult, returnRate)
     }
 
     private fun buyTickets(userAmount: Int): List<LottoTicket> {
@@ -42,10 +47,4 @@ class LottoController(
         return PrizeNumbers(winningLottoNumbersTicket, bonusLottoNumber)
     }
 
-    private fun handleResults(allTickets: LottoTickets, prizeNumbers: PrizeNumbers, userAmount: Int) {
-        val lottoEvaluator = LottoEvaluator()
-        val ticketsResult = allTickets.evaluateAll(prizeNumbers)
-        val returnRate = lottoEvaluator.evaluateReturnRate(ticketsResult, userAmount)
-        resultView.printResult(ticketsResult, returnRate)
-    }
 }

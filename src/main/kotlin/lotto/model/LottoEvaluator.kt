@@ -1,21 +1,22 @@
 package lotto.model
 
 class LottoEvaluator(
+    val results: Map<Rank, Int>, val userAmount: Int
 ) {
 
-    fun calculateTotalPrize(results: Map<Rank, Int>): Int {
+    private fun calculateTotalPrize(): Int {
         var totalPrize = 0
         results.map { (key, value) -> totalPrize += key.winningMoney * value }
         return totalPrize
     }
 
-    fun calculateReturnRate(
+    private fun calculateReturnRate(
         totalPrize: Int,
         userAmount: Int,
     ) = totalPrize.toDouble() / userAmount.toDouble()
 
-    fun evaluateReturnRate(results: Map<Rank, Int>, userAmount: Int): Double {
-        val totalPrize = calculateTotalPrize(results)
+    fun evaluateReturnRate(): Double {
+        val totalPrize = calculateTotalPrize()
         return calculateReturnRate(totalPrize, userAmount)
     }
 }
