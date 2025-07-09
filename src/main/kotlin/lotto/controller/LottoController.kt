@@ -24,13 +24,13 @@ class LottoController(
     }
 
     private fun buyTickets(userAmount: Int): List<LottoTicket> {
-        var numberOfTickets = ticketSeller.calculateTickets(userAmount)
-        val numberOfManualTickets = inputView.takeNumberOfCustomTickets(numberOfTickets)
+        val numberTotalOfTickets = ticketSeller.calculateTickets(userAmount)
+        val numberOfManualTickets = inputView.takeNumberOfCustomTickets(numberTotalOfTickets)
         val customTicketNumbers = inputView.takeCustomLottoNumbers(numberOfManualTickets)
         val customTickets = ticketSeller.createCustomTickets(customTicketNumbers)
-        numberOfTickets -= numberOfManualTickets
+        val numberOfRandomTickets = numberTotalOfTickets - numberOfManualTickets
 
-        val randomTickets = ticketSeller.createRandomTickets(numberOfTickets)
+        val randomTickets = ticketSeller.createRandomTickets(numberOfRandomTickets)
         return customTickets + randomTickets
     }
 
