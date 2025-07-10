@@ -1,5 +1,6 @@
 package lotto.view
 
+import lotto.model.LottoResults
 import lotto.model.LottoTickets
 import lotto.model.Rank
 
@@ -11,23 +12,26 @@ class ResultView() {
         }
     }
 
-    fun printResult(results: Map<Rank, Int>, returnRate: Double) {
+    fun printResult(
+        results: LottoResults,
+        returnRate: Double,
+    ) {
         println()
         printResultTickets(results)
         printReturnRate(returnRate)
     }
 
-    fun printResultTickets(results: Map<Rank, Int>) {
+    fun printResultTickets(results: LottoResults) {
         println(
             """
-        $PRESENT_WINNING
-        $SEPARATOR
-        3 Matches (${"%,d".format(Rank.FIFTH.winningMoney)} KRW) - ${results.getValue(Rank.FIFTH)} tickets
-        4 Matches (${"%,d".format(Rank.FOURTH.winningMoney)} KRW) - ${results.getValue(Rank.FOURTH)} tickets
-        5 Matches (${"%,d".format(Rank.THIRD.winningMoney)} KRW) - ${results.getValue(Rank.THIRD)} tickets
-        5 Matches + Bonus Ball (${"%,d".format(Rank.SECOND.winningMoney)} KRW) - ${results.getValue(Rank.SECOND)} tickets
-        6 Matches (${"%,d".format(Rank.FIRST.winningMoney)} KRW) - ${results.getValue(Rank.FIRST)} tickets
-        """.trimIndent()
+            $PRESENT_WINNING
+            $SEPARATOR
+            3 Matches (${"%,d".format(Rank.FIFTH.winningMoney)} KRW) - ${results.obtainWinsForRank(Rank.FIFTH)} tickets
+            4 Matches (${"%,d".format(Rank.FOURTH.winningMoney)} KRW) - ${results.obtainWinsForRank(Rank.FOURTH)} tickets
+            5 Matches (${"%,d".format(Rank.THIRD.winningMoney)} KRW) - ${results.obtainWinsForRank(Rank.THIRD)} tickets
+            5 Matches + Bonus Ball (${"%,d".format(Rank.SECOND.winningMoney)} KRW) - ${results.obtainWinsForRank(Rank.SECOND)} tickets
+            6 Matches (${"%,d".format(Rank.FIRST.winningMoney)} KRW) - ${results.obtainWinsForRank(Rank.FIRST)} tickets
+            """.trimIndent(),
         )
     }
 
