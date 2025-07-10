@@ -51,7 +51,6 @@ class InputView {
                 println(e.message)
             }
         }
-
     }
 
     fun takeWinningNumbers(): List<Int> {

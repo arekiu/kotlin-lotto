@@ -3,7 +3,7 @@ package lotto.model
 class LottoTicket(
     numbersForLotto: List<Int>,
     var numberOfHits: Int = 0,
-    var hasBonus: Boolean = false
+    var hasBonus: Boolean = false,
 ) {
     val lottoNumbers: List<LottoNumber>
 

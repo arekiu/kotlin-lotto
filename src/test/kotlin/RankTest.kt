@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 class RankTest {
-
     @Test
     fun `should assign the corresponding rank when has bonus`() {
         val matchingNumber = 5

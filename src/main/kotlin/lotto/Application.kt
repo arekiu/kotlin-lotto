@@ -10,11 +10,12 @@ fun main() {
     val resultView = ResultView()
     val ticketSeller = TicketsSeller()
 
-    val lottoController = LottoController(
-        inputView,
-        resultView,
-        ticketSeller
-    )
+    val lottoController =
+        LottoController(
+            inputView,
+            resultView,
+            ticketSeller,
+        )
 
     lottoController.run()
 }

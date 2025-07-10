@@ -9,7 +9,6 @@ class LottoController(
     private val resultView: ResultView,
     private val ticketsSeller: TicketsSeller,
 ) {
-
     fun run() {
         val userAmount = inputView.takePurchaseInput()
 
@@ -45,5 +44,4 @@ class LottoController(
         val bonusLottoNumber = LottoNumber.from(bonusNumber)
         return PrizeNumbers(winningLottoNumbersTicket, bonusLottoNumber)
     }
-
 }

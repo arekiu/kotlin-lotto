@@ -1,17 +1,15 @@
 package lotto
 
-import lotto.model.TicketGenerator
+import lotto.model.LottoTicket
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
 class LottoTest {
-    val ticketGenerator = TicketGenerator()
-
     @Test
     fun `throw error exception when amount of numbers aren't 6`() {
         val lottoNumbers = listOf(1, 2, 3, 4, 5)
         assertThrows<IllegalArgumentException> {
-            ticketGenerator.createLottoTicket(lottoNumbers)
+            LottoTicket(lottoNumbers)
         }
     }
 
@@ -19,7 +17,7 @@ class LottoTest {
     fun `throw error exception when numbers are out of the range between 1 and 45`() {
         val lottoNumbers = listOf(1, 2, 3, 4, 5, 46)
         assertThrows<IllegalArgumentException> {
-            ticketGenerator.createLottoTicket(lottoNumbers)
+            LottoTicket(lottoNumbers)
         }
     }
 
@@ -27,7 +25,7 @@ class LottoTest {
     fun `throw error exception when numbers are duplicated`() {
         val lottoNumbers = listOf(1, 2, 2, 3, 4, 5)
         assertThrows<IllegalArgumentException> {
-            ticketGenerator.createLottoTicket(lottoNumbers)
+            LottoTicket(lottoNumbers)
         }
     }
 }
