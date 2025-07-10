@@ -1,17 +1,18 @@
 package lotto.model
 
 class LottoTicket(
-    val lottoNumbers: List<LottoNumber>,
+    numbersForLotto: List<Int>,
     var numberOfHits: Int = 0,
     var hasBonus: Boolean = false
 ) {
-    init {
-        require(lottoNumbers.count() == 6)
-        require(numbersAreNotDuplicated(lottoNumbers))
-    }
+    val lottoNumbers: List<LottoNumber>
 
-    private fun numbersAreNotDuplicated(lottoNumbers: List<LottoNumber>): Boolean {
-        return lottoNumbers.count() == lottoNumbers.toSet().count()
+    init {
+        require(numbersForLotto.count() == 6)
+        require(numbersForLotto.distinct().size == 6)
+        require(numbersForLotto.all { it in 1..45 })
+
+        lottoNumbers = numbersForLotto.map { LottoNumber.from(it) }
     }
 
     fun compareTicket(prizeNumbers: PrizeNumbers) {
@@ -20,5 +21,4 @@ class LottoTicket(
             hasBonus = prizeNumbers.bonusNumber in lottoNumbers
         }
     }
-
 }
