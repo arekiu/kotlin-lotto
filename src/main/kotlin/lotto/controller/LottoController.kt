@@ -7,7 +7,7 @@ import lotto.view.ResultView
 class LottoController(
     private val inputView: InputView,
     private val resultView: ResultView,
-    private val ticketSeller: TicketsSeller,
+    private val ticketsSeller: TicketsSeller,
     private val ticketGenerator: TicketGenerator
 ) {
 
@@ -29,13 +29,13 @@ class LottoController(
     }
 
     private fun buyTickets(userAmount: Int): List<LottoTicket> {
-        val numberTotalOfTickets = ticketSeller.calculateTickets(userAmount)
+        val numberTotalOfTickets = ticketsSeller.calculateTickets(userAmount)
         val numberOfManualTickets = inputView.takeNumberOfCustomTickets(numberTotalOfTickets)
         val customTicketNumbers = inputView.takeCustomLottoNumbers(numberOfManualTickets)
-        val customTickets = ticketSeller.createCustomTickets(customTicketNumbers)
+        val customTickets = ticketsSeller.createCustomTickets(customTicketNumbers)
         val numberOfRandomTickets = numberTotalOfTickets - numberOfManualTickets
 
-        val randomTickets = ticketSeller.createRandomTickets(numberOfRandomTickets)
+        val randomTickets = ticketsSeller.createRandomTickets(numberOfRandomTickets)
         return customTickets + randomTickets
     }
 
